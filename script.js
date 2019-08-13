@@ -50,13 +50,14 @@ class App extends Component {
       'li',
       {
         key: user.name,
+        className: 'list-group-item',
         className: user.isFavorite ? 'favorite' : '',
         onClick: () => toggle(user)
       },
       user.name
     ));
 
-    const list = createElement('ul', null, listOfUsers);
+    const list = createElement('ul', {className: 'list-group'}, listOfUsers);
 
     return createElement('div', { id: 'user-list'}, title, counter, list);
   }

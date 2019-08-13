@@ -1,3 +1,10 @@
 .favorite {
   background-color: tomato;
+  color: white;
+}
+li {
+  padding: 1rem;
+}
+ul {
+  list-style: none;
 }
