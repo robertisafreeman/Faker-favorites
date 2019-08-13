@@ -27,13 +27,14 @@ class App extends Component {
   }
 
   render() {
-    const { users, count } = this.state;
+    const { users } = this.state;
     const title = createElement('h1', null, 'Acme Faker Favorites');
-    const counter = createElement('h2', null, `You have (${count}) favorite users!`);
+    const counter = createElement('h2', null, `You have (${this.state.count}) favorite users!`);
 
     const toggle = (user) => {
       user.isFavorite = !user.isFavorite;
-      this.setState({ users });
+      const count = users.filter(user => user.isFavorite).length;
+      this.setState({ users, count });
     }
 
     const listOfUsers = users.map(user => createElement(
