@@ -15,8 +15,6 @@ const users = [
 
 users.forEach(user => user.isFavorite = false);
 
-console.log(users);
-
 class App extends Component {
   constructor() {
     super();
@@ -27,15 +25,26 @@ class App extends Component {
   }
 
   render() {
-    const { users } = this.state;
-    const title = createElement('h1', null, 'Acme Faker Favorites');
-    const counter = createElement('h2', null, `You have (${this.state.count}) favorite users!`);
-
     const toggle = (user) => {
       user.isFavorite = !user.isFavorite;
       const count = users.filter(user => user.isFavorite).length;
       this.setState({ users, count });
     }
+
+    const addUser = (users) => {
+      users.push(faker.helpers.createCard());
+      this.setState({ users });
+    };
+
+    const { users } = this.state;
+    const title = createElement('h1', null, 'Acme Faker Favorites');
+    const counter = createElement(
+      'h2',
+      {
+        onClick: () => addUser(users)
+      },
+      `You have (${this.state.count}) favorite users!`
+    );
 
     const listOfUsers = users.map(user => createElement(
       'li',
